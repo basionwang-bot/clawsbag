@@ -16,7 +16,8 @@
 
 import OSS from "ali-oss";
 
-function createOSSClient(): OSS | null {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function createOSSClient(): any {
   const accessKeyId = process.env.ALIYUN_ACCESS_KEY_ID;
   const accessKeySecret = process.env.ALIYUN_ACCESS_KEY_SECRET;
   const region = process.env.ALIYUN_OSS_REGION;
