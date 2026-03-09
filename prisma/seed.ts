@@ -2,7 +2,9 @@ import { PrismaClient } from "../src/generated/prisma/client.js";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import path from "path";
 
-const dbPath = path.join(process.cwd(), "dev.db");
+const dbUrl = process.env.DATABASE_URL || "file:./dev.db";
+const dbFile = dbUrl.replace("file:", "").replace("./", "");
+const dbPath = path.join(process.cwd(), dbFile);
 const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
 const prisma = new PrismaClient({ adapter });
 

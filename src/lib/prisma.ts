@@ -14,7 +14,9 @@ export async function getClient() {
 
   const { PrismaBetterSqlite3 } = nodeRequire("@prisma/adapter-better-sqlite3");
 
-  const dbPath = join(process.cwd(), "dev.db");
+  const dbUrl = process.env.DATABASE_URL || "file:./dev.db";
+  const dbFile = dbUrl.replace("file:", "").replace("./", "");
+  const dbPath = join(process.cwd(), dbFile);
   const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
   prismaInstance = new PrismaClient({ adapter });
   return prismaInstance;
