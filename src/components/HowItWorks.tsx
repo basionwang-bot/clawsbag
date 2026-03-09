@@ -31,7 +31,7 @@ export function HowItWorks() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {STEPS.map((step, i) => (
+          {STEPS.map((step: any, i: any) => (
             <div key={step.number} className="text-center group">
               <div className="w-20 h-20 mx-auto mb-5 rounded-2xl bg-accent/10 flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
                 {step.icon}

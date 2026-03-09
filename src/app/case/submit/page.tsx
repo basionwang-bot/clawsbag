@@ -39,7 +39,7 @@ export default function SubmitCasePage() {
 
   const togglePack = (id: string) => {
     setSelectedPacks((prev) =>
-      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((p: any) => p !== id) : [...prev, id]
     );
   };
 
@@ -50,7 +50,7 @@ export default function SubmitCasePage() {
   };
 
   const removeUsedItem = (index: number) => {
-    setUsedItems(usedItems.filter((_, i) => i !== index));
+    setUsedItems(usedItems.filter((_: any, i: any) => i !== index));
   };
 
   if (step === "done") {
@@ -84,7 +84,7 @@ export default function SubmitCasePage() {
 
         {/* Progress */}
         <div className="flex items-center gap-2 mb-10">
-          {[1, 2, 3].map((s) => (
+          {[1, 2, 3].map((s: any) => (
             <div key={s} className="flex-1 flex items-center gap-2">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium shrink-0 ${
@@ -136,7 +136,7 @@ export default function SubmitCasePage() {
                   className="w-full bg-background border border-card-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent/50 transition-colors"
                 >
                   <option value="">请选择</option>
-                  {INDUSTRIES.map((ind) => (
+                  {INDUSTRIES.map((ind: any) => (
                     <option key={ind.id} value={ind.id}>
                       {ind.icon} {ind.label}
                     </option>
@@ -251,7 +251,7 @@ export default function SubmitCasePage() {
                   📦 选择技能包
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto">
-                  {availableSkills.map((skill) => (
+                  {availableSkills.map((skill: any) => (
                     <label
                       key={skill.id}
                       className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${
@@ -292,7 +292,7 @@ export default function SubmitCasePage() {
                 {/* Existing tags */}
                 {usedItems.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {usedItems.map((item, i) => (
+                    {usedItems.map((item: any, i: any) => (
                       <span
                         key={i}
                         className={`text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
@@ -378,7 +378,7 @@ export default function SubmitCasePage() {
                 <div>
                   <span className="text-muted text-xs">行业</span>
                   <p className="text-foreground">
-                    {INDUSTRIES.find((i) => i.id === industry)?.label ||
+                    {INDUSTRIES.find((i: any) => i.id === industry)?.label ||
                       industry}
                   </p>
                 </div>
@@ -393,8 +393,8 @@ export default function SubmitCasePage() {
                 <div>
                   <span className="text-muted text-xs">使用的技能包</span>
                   <div className="flex flex-wrap gap-2 mt-1">
-                    {selectedPacks.map((id) => {
-                      const skill = availableSkills.find((s) => s.id === id);
+                    {selectedPacks.map((id: any) => {
+                      const skill = availableSkills.find((s: any) => s.id === id);
                       return skill ? (
                         <span
                           key={id}
@@ -412,7 +412,7 @@ export default function SubmitCasePage() {
                       标注的 Skills & Workflows
                     </span>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      {usedItems.map((item, i) => (
+                      {usedItems.map((item: any, i: any) => (
                         <span
                           key={i}
                           className={`text-xs px-2 py-1 rounded-full ${

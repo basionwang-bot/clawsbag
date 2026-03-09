@@ -250,11 +250,11 @@ export const ALL_SKILLS: SkillCardData[] = [
 ];
 
 export function getSkillById(id: string) {
-  return ALL_SKILLS.find((s) => s.id === id);
+  return ALL_SKILLS.find((s: any) => s.id === id);
 }
 
 export function getSkillsByIndustry(industry: string) {
-  return ALL_SKILLS.filter((s) => s.industry === industry);
+  return ALL_SKILLS.filter((s: any) => s.industry === industry);
 }
 
 export function searchSkills(query: string) {

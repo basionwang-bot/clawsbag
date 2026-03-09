@@ -51,10 +51,10 @@ export function CaseShowcase() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cases.map((c) => {
+          {cases.map((c: any) => {
             const usedItems = c.usedItems || [];
-            const skills = usedItems.filter((i) => i.type === "skill");
-            const workflows = usedItems.filter((i) => i.type === "workflow");
+            const skills = usedItems.filter((i: any) => i.type === "skill");
+            const workflows = usedItems.filter((i: any) => i.type === "workflow");
 
             return (
               <Link
@@ -86,7 +86,7 @@ export function CaseShowcase() {
 
                 {/* Skill & Workflow Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {skills.slice(0, 2).map((s) => (
+                  {skills.slice(0, 2).map((s: any) => (
                     <span
                       key={s.name}
                       className="text-[11px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
@@ -94,7 +94,7 @@ export function CaseShowcase() {
                       Skill · {s.name}
                     </span>
                   ))}
-                  {workflows.slice(0, 1).map((w) => (
+                  {workflows.slice(0, 1).map((w: any) => (
                     <span
                       key={w.name}
                       className="text-[11px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"

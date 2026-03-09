@@ -15,8 +15,8 @@ export function IndustryShowcase() {
       .catch(() => {});
   }, []);
 
-  const industryLabel = INDUSTRIES.find((i) => i.id === activeTab)?.label;
-  const skills = allSkills.filter((s) => s.industry === industryLabel);
+  const industryLabel = INDUSTRIES.find((i: any) => i.id === activeTab)?.label;
+  const skills = allSkills.filter((s: any) => s.industry === industryLabel);
 
   return (
     <section className="py-20">
@@ -30,7 +30,7 @@ export function IndustryShowcase() {
 
         {/* Industry Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {INDUSTRIES.map((industry) => (
+          {INDUSTRIES.map((industry: any) => (
             <button
               key={industry.id}
               onClick={() => setActiveTab(industry.id)}
@@ -47,7 +47,7 @@ export function IndustryShowcase() {
 
         {/* Skill Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skills.map((skill) => (
+          {skills.map((skill: any) => (
             <SkillCard key={skill.id} skill={skill} />
           ))}
         </div>

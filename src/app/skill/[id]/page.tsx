@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 function StarRating({ rating }: { rating: number }) {
   return (
     <span className="text-accent">
-      {Array.from({ length: 5 }, (_, i) => (
+      {Array.from({ length: 5 }, (_: any, i: any) => (
         <span key={i}>{i < Math.round(rating) ? "★" : "☆"}</span>
       ))}
     </span>
@@ -156,7 +156,7 @@ export default function SkillDetailPage() {
           <section className="mb-10">
             <h2 className="text-2xl mb-4">包含内容</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {detail.contents.map((item, i) => (
+              {detail.contents.map((item: any, i: any) => (
               <div
                 key={i}
                 className="bg-card-bg border border-card-border rounded-xl p-4"
@@ -177,7 +177,7 @@ export default function SkillDetailPage() {
             <h2 className="text-2xl mb-4">使用说明</h2>
             <div className="bg-card-bg border border-card-border rounded-2xl p-6">
               <ol className="space-y-3">
-                {detail.instructions.map((step, i) => (
+                {detail.instructions.map((step: any, i: any) => (
                 <li key={i} className="flex gap-3 text-muted-fg">
                   <span className="font-mono-num text-accent font-bold shrink-0">
                     {i + 1}.
@@ -212,7 +212,7 @@ export default function SkillDetailPage() {
             用户评价 ({detail.reviews?.length ?? 0})
           </h2>
           <div className="space-y-4">
-            {(detail.reviews ?? []).map((review, i) => (
+            {(detail.reviews ?? []).map((review: any, i: any) => (
               <div
                 key={i}
                 className="bg-card-bg border border-card-border rounded-xl p-5"
@@ -241,7 +241,7 @@ export default function SkillDetailPage() {
             <h2 className="text-2xl mb-4">相关推荐</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {relatedSkills.map(
-                (s) => s && <SkillCard key={s.id} skill={s} />
+                (s: any) => s && <SkillCard key={s.id} skill={s} />
               )}
             </div>
           </section>

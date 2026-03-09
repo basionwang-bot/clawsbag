@@ -130,7 +130,7 @@ export const ALL_CASES: CaseDetail[] = [
 ];
 
 export function getCaseById(id: string) {
-  return ALL_CASES.find((c) => c.id === id);
+  return ALL_CASES.find((c: any) => c.id === id);
 }
 
 export function getAllUsedItemNames(): { skills: string[]; workflows: string[] } {

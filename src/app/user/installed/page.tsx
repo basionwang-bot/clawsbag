@@ -27,7 +27,7 @@ export default function InstalledPage() {
 
         {MOCK_INSTALLED.length > 0 ? (
           <div className="space-y-4">
-            {MOCK_INSTALLED.map((item) => (
+            {MOCK_INSTALLED.map((item: any) => (
               <div
                 key={item.id}
                 className="bg-card-bg border border-card-border rounded-xl p-5 flex items-center gap-4"

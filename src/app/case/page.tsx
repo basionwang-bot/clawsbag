@@ -54,18 +54,18 @@ export default function CasePage() {
     let result = [...allCases];
 
     if (filterIndustry) {
-      const label = INDUSTRIES.find((i) => i.id === filterIndustry)?.label;
-      result = result.filter((c) => c.industry === label);
+      const label = INDUSTRIES.find((i: any) => i.id === filterIndustry)?.label;
+      result = result.filter((c: any) => c.industry === label);
     }
 
     if (filterType !== "all") {
-      result = result.filter((c) =>
+      result = result.filter((c: any) =>
         (c.usedItems || []).some((item: any) => item.type === filterType)
       );
     }
 
     if (filterTag) {
-      result = result.filter((c) =>
+      result = result.filter((c: any) =>
         (c.usedItems || []).some((item: any) => item.name === filterTag)
       );
     }
@@ -103,7 +103,7 @@ export default function CasePage() {
           >
             全部行业
           </button>
-          {INDUSTRIES.map((ind) => (
+          {INDUSTRIES.map((ind: any) => (
             <button
               key={ind.id}
               onClick={() => setFilterIndustry(ind.id)}
@@ -126,7 +126,7 @@ export default function CasePage() {
               { id: "skill", label: "🧩 含 Skill" },
               { id: "workflow", label: "⚡ 含 Workflow" },
             ] as const
-          ).map((t) => (
+          ).map((t: any) => (
             <button
               key={t.id}
               onClick={() => {
@@ -161,7 +161,7 @@ export default function CasePage() {
             >
               全部
             </button>
-            {(filterType === "skill" ? allSkills : allWorkflows).map((tag) => (
+            {(filterType === "skill" ? allSkills : allWorkflows).map((tag: any) => (
               <button
                 key={tag}
                 onClick={() => setFilterTag(tag)}
@@ -191,10 +191,10 @@ export default function CasePage() {
 
         {/* Case Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((c) => {
+          {filtered.map((c: any) => {
             const usedItems = c.usedItems || [];
-            const skills = usedItems.filter((i) => i.type === "skill");
-            const workflows = usedItems.filter((i) => i.type === "workflow");
+            const skills = usedItems.filter((i: any) => i.type === "skill");
+            const workflows = usedItems.filter((i: any) => i.type === "workflow");
 
             return (
               <Link
@@ -226,7 +226,7 @@ export default function CasePage() {
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {skills.slice(0, 2).map((s) => (
+                  {skills.slice(0, 2).map((s: any) => (
                     <span
                       key={s.name}
                       className="text-[11px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
@@ -234,7 +234,7 @@ export default function CasePage() {
                       Skill · {s.name}
                     </span>
                   ))}
-                  {workflows.slice(0, 1).map((w) => (
+                  {workflows.slice(0, 1).map((w: any) => (
                     <span
                       key={w.name}
                       className="text-[11px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"

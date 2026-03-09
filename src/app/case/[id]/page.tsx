@@ -56,8 +56,8 @@ export default function CaseDetailPage() {
   }
 
   const caseItem = caseDetail;
-  const skills = (caseItem.usedItems || []).filter((i) => i.type === "skill");
-  const workflows = (caseItem.usedItems || []).filter((i) => i.type === "workflow");
+  const skills = (caseItem.usedItems || []).filter((i: any) => i.type === "skill");
+  const workflows = (caseItem.usedItems || []).filter((i: any) => i.type === "workflow");
 
   return (
     <div className="pt-24 min-h-screen">
@@ -118,7 +118,7 @@ export default function CaseDetailPage() {
                   🧩 Skills（具体技能）
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((s) => (
+                  {skills.map((s: any) => (
                     <span
                       key={s.name}
                       className="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
@@ -135,7 +135,7 @@ export default function CaseDetailPage() {
                   ⚡ Workflows（工作流）
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {workflows.map((w) => (
+                  {workflows.map((w: any) => (
                     <span
                       key={w.name}
                       className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
@@ -156,7 +156,7 @@ export default function CaseDetailPage() {
         <section className="mb-10">
           <h2 className="text-2xl mb-4">完整故事</h2>
           <div className="prose prose-invert max-w-none">
-            {(caseItem.fullStory || "").split("\n\n").map((paragraph, i) => (
+            {(caseItem.fullStory || "").split("\n\n").map((paragraph: any, i: any) => (
               <p key={i} className="text-muted-fg leading-relaxed mb-4">
                 {paragraph}
               </p>
@@ -168,7 +168,7 @@ export default function CaseDetailPage() {
         <section className="mb-10">
           <h2 className="text-2xl mb-4">安装同款技能包</h2>
           <div className="space-y-3">
-            {caseItem.skillPacks.map((sp) => (
+            {caseItem.skillPacks.map((sp: any) => (
               <Link
                 key={sp.id}
                 href={`/skill/${sp.id}`}

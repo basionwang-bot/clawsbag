@@ -28,13 +28,13 @@ export default function ExplorePage() {
 
   const toggleIndustry = (id: string) => {
     setSelectedIndustries((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((i: any) => i !== id) : [...prev, id]
     );
   };
 
   const toggleType = (id: string) => {
     setSelectedTypes((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((i: any) => i !== id) : [...prev, id]
     );
   };
 
@@ -44,7 +44,7 @@ export default function ExplorePage() {
     if (search) {
       const q = search.toLowerCase();
       result = result.filter(
-        (s) =>
+        (s: any) =>
           s.title.toLowerCase().includes(q) ||
           s.description.toLowerCase().includes(q)
       );
@@ -52,27 +52,27 @@ export default function ExplorePage() {
 
     if (selectedIndustries.length > 0) {
       const industryLabels = selectedIndustries.map(
-        (id) => INDUSTRIES.find((i) => i.id === id)?.label
+        (id: any) => INDUSTRIES.find((i: any) => i.id === id)?.label
       );
-      result = result.filter((s) => industryLabels.includes(s.industry));
+      result = result.filter((s: any) => industryLabels.includes(s.industry));
     }
 
     if (selectedTypes.length > 0) {
-      result = result.filter((s) => selectedTypes.includes(s.type));
+      result = result.filter((s: any) => selectedTypes.includes(s.type));
     }
 
     if (priceFilter === "free") {
-      result = result.filter((s) => s.price === 0);
+      result = result.filter((s: any) => s.price === 0);
     } else if (priceFilter === "paid") {
-      result = result.filter((s) => s.price > 0);
+      result = result.filter((s: any) => s.price > 0);
     }
 
     if (sortBy === "installCount") {
-      result.sort((a, b) => b.installCount - a.installCount);
+      result.sort((a: any, b: any) => b.installCount - a.installCount);
     } else if (sortBy === "rating") {
-      result.sort((a, b) => b.rating - a.rating);
+      result.sort((a: any, b: any) => b.rating - a.rating);
     } else if (sortBy === "newest") {
-      result.sort((a, b) => {
+      result.sort((a: any, b: any) => {
         const aDate = (a as SkillCardData & { createdAt?: string }).createdAt ?? "";
         const bDate = (b as SkillCardData & { createdAt?: string }).createdAt ?? "";
         return bDate.localeCompare(aDate);
@@ -129,7 +129,7 @@ export default function ExplorePage() {
                   行业分类
                 </h3>
                 <div className="space-y-2">
-                  {INDUSTRIES.map((ind) => (
+                  {INDUSTRIES.map((ind: any) => (
                     <label
                       key={ind.id}
                       className="flex items-center gap-2 text-sm text-muted-fg hover:text-foreground cursor-pointer transition-colors"
@@ -152,7 +152,7 @@ export default function ExplorePage() {
                   类型
                 </h3>
                 <div className="space-y-2">
-                  {SKILL_TYPES.map((t) => (
+                  {SKILL_TYPES.map((t: any) => (
                     <label
                       key={t.id}
                       className="flex items-center gap-2 text-sm text-muted-fg hover:text-foreground cursor-pointer transition-colors"
@@ -179,7 +179,7 @@ export default function ExplorePage() {
                     { id: "all" as const, label: "全部" },
                     { id: "free" as const, label: "免费" },
                     { id: "paid" as const, label: "付费" },
-                  ].map((p) => (
+                  ].map((p: any) => (
                     <label
                       key={p.id}
                       className="flex items-center gap-2 text-sm text-muted-fg hover:text-foreground cursor-pointer transition-colors"
@@ -219,7 +219,7 @@ export default function ExplorePage() {
           <div className="flex-1">
             {/* Mobile Filter Chips */}
             <div className="lg:hidden flex flex-wrap gap-2 mb-4">
-              {INDUSTRIES.map((ind) => (
+              {INDUSTRIES.map((ind: any) => (
                 <button
                   key={ind.id}
                   onClick={() => toggleIndustry(ind.id)}
@@ -242,7 +242,7 @@ export default function ExplorePage() {
 
             {filteredSkills.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {filteredSkills.map((skill) => (
+                {filteredSkills.map((skill: any) => (
                   <SkillCard key={skill.id} skill={skill} />
                 ))}
               </div>

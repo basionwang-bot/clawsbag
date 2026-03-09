@@ -67,7 +67,7 @@ export default function PublishPage() {
 
         {/* Progress */}
         <div className="flex items-center gap-2 mb-10">
-          {[1, 2, 3, 4].map((s) => (
+          {[1, 2, 3, 4].map((s: any) => (
             <div key={s} className="flex-1 flex items-center gap-2">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium shrink-0 ${
@@ -140,7 +140,7 @@ export default function PublishPage() {
                     className="w-full bg-background border border-card-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent/50 transition-colors"
                   >
                     <option value="">请选择</option>
-                    {INDUSTRIES.map((ind) => (
+                    {INDUSTRIES.map((ind: any) => (
                       <option key={ind.id} value={ind.id}>
                         {ind.label}
                       </option>
@@ -157,7 +157,7 @@ export default function PublishPage() {
                     className="w-full bg-background border border-card-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent/50 transition-colors"
                   >
                     <option value="">请选择</option>
-                    {SKILL_TYPES.map((t) => (
+                    {SKILL_TYPES.map((t: any) => (
                       <option key={t.id} value={t.id}>
                         {t.label}
                       </option>
@@ -198,7 +198,7 @@ export default function PublishPage() {
                 <label className="text-sm text-muted-fg mb-1.5 block">
                   包含什么（可动态添加）
                 </label>
-                {contents.map((item, i) => (
+                {contents.map((item: any, i: any) => (
                   <div key={i} className="flex gap-2 mb-2">
                     <input
                       type="text"
@@ -388,13 +388,13 @@ export default function PublishPage() {
                   <div className="flex justify-between">
                     <span className="text-muted-fg">类型</span>
                     <span className="text-foreground">
-                      {SKILL_TYPES.find((t) => t.id === packType)?.label}
+                      {SKILL_TYPES.find((t: any) => t.id === packType)?.label}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-fg">行业</span>
                     <span className="text-foreground">
-                      {INDUSTRIES.find((i) => i.id === industry)?.label}
+                      {INDUSTRIES.find((i: any) => i.id === industry)?.label}
                     </span>
                   </div>
                   <div className="flex justify-between">
