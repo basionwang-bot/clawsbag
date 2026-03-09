@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  phone     String   @unique
+  nickname  String?
+  industry  String?
+  avatar    String?
+  bio       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  installations Installation[]
+  reviews       Review[]
+  cases         Case[]
+  skillPacks    SkillPack[]
+}
+
+model SkillPack {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  industry     String
+  type         String   // skill_pack | workflow | resource | combo
+  price        Float    @default(0)
+  coverImage   String?
+  fileUrl      String?
+  problem      String?  // "解决什么问题" 富文本
+  contents     String?  // 包含内容 JSON
+  instructions String?  // 使用说明
+  targetUser   String?  // 适合谁
+  notForUser   String?  // 不适合谁
+  demoVideo    String?
+  installCount Int      @default(0)
+  rating       Float    @default(0)
+  ratingCount  Int      @default(0)
+  status       String   @default("pending") // pending | approved | rejected
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  tags          SkillTag[]
+  installations Installation[]
+  reviews       Review[]
+  caseLinks     CaseSkillPack[]
+}
+
+model SkillTag {
+  id          String @id @default(cuid())
+  tagName     String
+  skillPackId String
+
+  skillPack SkillPack @relation(fields: [skillPackId], references: [id], onDelete: Cascade)
+
+  @@index([skillPackId])
+}
+
+model Installation {
+  id          String   @id @default(cuid())
+  userId      String
+  skillPackId String
+  status      String   @default("installed") // installed | uninstalled
+  installedAt DateTime @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  skillPack SkillPack @relation(fields: [skillPackId], references: [id])
+
+  @@unique([userId, skillPackId])
+}
+
+model Case {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  industry    String
+  metricLabel String?
+  metricValue String?
+  city        String?
+  status      String   @default("pending") // pending | approved | rejected
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  skillPacks CaseSkillPack[]
+}
+
+model CaseSkillPack {
+  caseId      String
+  skillPackId String
+
+  case      Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  skillPack SkillPack @relation(fields: [skillPackId], references: [id], onDelete: Cascade)
+
+  @@id([caseId, skillPackId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  rating      Int
+  content     String?
+  createdAt   DateTime @default(now())
+
+  userId      String
+  skillPackId String
+
+  user      User      @relation(fields: [userId], references: [id])
+  skillPack SkillPack @relation(fields: [skillPackId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, skillPackId])
+}

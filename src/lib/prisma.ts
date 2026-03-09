@@ -1,0 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+let prismaInstance: any = null;
+
+export async function getClient() {
+  if (prismaInstance) return prismaInstance;
+
+  const { createRequire } = await import("node:module");
+  const { join } = await import("node:path");
+  const nodeRequire = createRequire(join(process.cwd(), "package.json"));
+
+  const clientPath = join(process.cwd(), "src", "generated", "prisma", "compiled", "client.cjs");
+  const { PrismaClient } = nodeRequire(clientPath);
+
+  const { PrismaBetterSqlite3 } = nodeRequire("@prisma/adapter-better-sqlite3");
+
+  const dbPath = join(process.cwd(), "dev.db");
+  const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
+  prismaInstance = new PrismaClient({ adapter });
+  return prismaInstance;
+}
