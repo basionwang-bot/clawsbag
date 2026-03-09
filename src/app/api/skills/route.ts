@@ -49,7 +49,8 @@ export async function GET(request: NextRequest) {
     ]);
 
     return NextResponse.json({
-      skills: skills.map((s) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      skills: skills.map((s: any) => ({
         id: s.id,
         title: s.title,
         description: s.description,
@@ -61,7 +62,8 @@ export async function GET(request: NextRequest) {
         rating: s.rating,
         ratingCount: s.ratingCount,
         author: s.author,
-        tags: s.tags.map((t) => t.tagName),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        tags: s.tags.map((t: any) => t.tagName),
         createdAt: s.createdAt,
       })),
       total,

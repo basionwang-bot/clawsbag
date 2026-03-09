@@ -33,7 +33,8 @@ export async function GET(
 
     return NextResponse.json({
       ...skill,
-      tags: skill.tags.map((t) => t.tagName),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      tags: skill.tags.map((t: any) => t.tagName),
       contents: skill.contents ? JSON.parse(skill.contents) : [],
     });
   } catch (error) {

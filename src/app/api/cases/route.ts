@@ -29,7 +29,8 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-      cases: cases.map((c) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      cases: cases.map((c: any) => ({
         id: c.id,
         title: c.title,
         content: c.content,
@@ -38,7 +39,8 @@ export async function GET(request: NextRequest) {
         metricValue: c.metricValue,
         city: c.city,
         author: c.user,
-        skillPacks: c.skillPacks.map((sp) => sp.skillPack),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        skillPacks: c.skillPacks.map((sp: any) => sp.skillPack),
         createdAt: c.createdAt,
       })),
     });
