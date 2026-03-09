@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     "@prisma/client",
     "@prisma/adapter-better-sqlite3",
     "better-sqlite3",
+    "ali-oss",
+    "jsonwebtoken",
+    "@alicloud/dysmsapi20170525",
+    "@alicloud/openapi-client",
+    "@alicloud/tea-util",
   ],
 };
 
